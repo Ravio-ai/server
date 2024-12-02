@@ -8,17 +8,20 @@
     
     {% endblock %}
     </title>
+    <link rel="stylesheet" href="/static/css/global.css">
+
 </head>
 <body>
+    <header>
     <nav>
         <a href="/">Home</a>
         <a href="/todos">Todo</a>
-        <a href="/create_todo">Create Todo</a>
+        <a href="/create_todo">Create</a>
         <a href="/sign_in">Sign In</a>
         <a href="/sign_up">Sign Up</a>
-
-
+    
     </nav>
+    </header>
     <main>
         {% block main %}
 
