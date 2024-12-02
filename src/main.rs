@@ -3,10 +3,13 @@ use axum::response::{Html, IntoResponse};
 use axum::routing::get;
 use axum::Router;
 use tokio::net::TcpListener;
+use tower_http::services::ServeDir;
 
 #[tokio::main]
 async fn main() {
     let listen: TcpListener = TcpListener::bind("127.0.0.1:8080").await.unwrap();
+
+    let server_dir = ServeDir::new("static");
 
     let app = Router::new()
         .route("/", get(home))
@@ -14,7 +17,8 @@ async fn main() {
         .route("/create_todo", get(create_toto_handler))
         .route("/sign_in", get(sign_in_handler))
         .route("/sign_up", get(sign_up_handler))
-        .route("/server_error", get(server_error_handler));
+        .route("/server_error", get(server_error_handler))
+        .nest_service("/static", server_dir);
 
     println!("Server is runnign on port :8080");
     axum::serve(listen, app).await.unwrap();
