@@ -16,6 +16,7 @@ async fn main() {
         .route("/sign_up", get(sign_up_handler))
         .route("/server_error", get(server_error_handler));
 
+    println!("Server is runnign on port :8080");
     axum::serve(listen, app).await.unwrap();
 }
 
