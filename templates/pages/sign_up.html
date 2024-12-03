@@ -5,10 +5,20 @@
     Sign Up
 {% endblock %}
 
-
+<!-- css -->
+{% block css %}
+  <link rel="stylesheet" href="/static/css/auth.css">
+{% endblock %}
 {% block main %}
-    <h1>
-        Sign Up
-    </h1>
-
+  <div class="auth-container">
+      <h1 class="auth-heading">Sign Up</h1>
+      <form action="/sign_up" method="POST">
+        <input type="text" placeholder="Enter Your Email" name="email">
+        <input type="password" placeholder="Password" name="password">
+        <button class="filled-button" type="submit">Sign Up</button>
+      </form>
+      <form action="/sign_in" method="GET">
+        <button> Already have an account? Sign In</button>
+      </form>
+    </div>
 {% endblock %}

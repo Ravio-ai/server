@@ -10,7 +10,7 @@ use tower_http::services::ServeDir;
 use tower_http::trace::TraceLayer;
 use tracing::Span;
 
-use crate::handlers::auth::{sign_in_handler, sign_up_handler};
+use crate::handlers::auth::{post_sign_up_handler, sign_in_handler, sign_up_handler};
 use crate::handlers::public::home;
 use crate::handlers::todos::{create_toto_handler, todos_handler};
 
@@ -22,7 +22,7 @@ pub fn router() -> Router {
         .route("/todos", get(todos_handler))
         .route("/create_todo", get(create_toto_handler))
         .route("/sign_in", get(sign_in_handler))
-        .route("/sign_up", get(sign_up_handler))
+        .route("/sign_up", get(sign_up_handler).post(post_sign_up_handler))
         .nest_service("/static", server_dir)
         .layer(
             TraceLayer::new_for_http()
@@ -36,7 +36,7 @@ pub fn router() -> Router {
 
 fn on_request(request: &Request<Body>, _: &Span) {
     tracing::info!(
-        "Request started: method {} path {}",
+        "-> Request started: method {} path {}",
         request.method(),
         request.uri().path()
     );

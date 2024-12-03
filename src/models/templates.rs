@@ -18,7 +18,11 @@ pub struct SignInTemplate {}
 
 #[derive(Template)]
 #[template(path = "pages/sign_up.html")]
-pub struct SignUpTemplate {}
+pub struct SignUpTemplate<'a> {
+    pub email: &'a str,
+    pub email_error: &'a str,
+    pub password_error: &'a str,
+}
 
 #[derive(Template)]
 #[template(path = "pages/server_error.html")]
