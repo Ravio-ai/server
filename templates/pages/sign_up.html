@@ -10,15 +10,35 @@
   <link rel="stylesheet" href="/static/css/auth.css">
 {% endblock %}
 {% block main %}
-  <div class="auth-container">
-      <h1 class="auth-heading">Sign Up</h1>
-      <form action="/sign_up" method="POST">
-        <input type="text" placeholder="Enter Your Email" name="email">
-        <input type="password" placeholder="Password" name="password">
-        <button class="filled-button" type="submit">Sign Up</button>
-      </form>
-      <form action="/sign_in" method="GET">
-        <button> Already have an account? Sign In</button>
-      </form>
-    </div>
+<div class="auth-container">
+
+    <h1 class="auth-heading">Create Account</h1>
+    <form method="POST" action="/sign_up">
+
+        {% if email_error.is_empty() %}
+        <input type="text" placeholder="Enter your email" name="email" value="{{email}}">
+        {% else %}
+        <input class="invalid-input-field animate__animated animate__shakeX" type="text" placeholder="Enter your email"
+            name="email" value="{{email}}">
+        <label>{{email_error}}</label>
+
+        {% endif %}
+
+
+        {% if password_error.is_empty() %}
+        <input type="text" placeholder="Enter your password" name="password">
+        {% else %}
+        <input class="invalid-input-field animate__animated animate__shakeX" type="text"
+            placeholder="Enter your password" name="password">
+        <label>{{password_error}}</label>
+        {% endif %}
+
+
+        <button class="filled-button" type="submit">Submit</button>
+    </form>
+    <form method="GET" action="/sign_in">
+        <button>Already have account? Log In</button>
+    </form>
+
+</div>
 {% endblock %}
