@@ -1,3 +1,4 @@
+
 {
     "http.proxySupport": "off",
     "workbench.startupEditor": "welcomePageInEmptyWorkbench",
@@ -16,5 +17,7 @@
     "editor.fontLigatures": true,
     "editor.minimap.enabled": false,
     "files.autoSave": "off",
-    "workbench.iconTheme": "simple-icons"
+    "workbench.iconTheme": "simple-icons",
+    "tabnine.experimentalAutoImports": true
+
 }
